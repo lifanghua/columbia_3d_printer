@@ -1,0 +1,406 @@
+# Copyright SiteOrigin (c) 2012
+# This file is distributed under the GNU General Public License 2.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: snapshot 1.0.9\n"
+"POT-Creation-Date: 2012-10-30T19:55:45+02:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+msgid "Page Not Found"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Comments Are Closed"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "dismiss"
+msgstr ""
+
+msgid "Hi! I'm Greg Priday from SiteOrigin."
+msgstr ""
+
+msgid "I hope you enjoy my WordPress theme."
+msgstr ""
+
+msgid "Please follow me on Twitter and Facebook for updates."
+msgstr ""
+
+msgid "Premium Upgrade"
+msgstr ""
+
+msgid "There's a premium version of %s available, <a href='%s'>find out more</a>."
+msgstr ""
+
+msgid "After you pay for %s Premium, we'll email you a download link and an order number to your <strong>PayPal email address</strong>. "
+msgstr ""
+
+msgid "You can install manually, or enter your order number here to enable an automatic upgrade."
+msgstr ""
+
+msgid "Order Number"
+msgstr ""
+
+msgid "Enable Upgrade"
+msgstr ""
+
+msgid "Already Paid?"
+msgstr ""
+
+msgid "There was a problem contacting our validation servers."
+msgstr ""
+
+msgid "Please try again later, or upgrade manually using the ZIP file we sent you."
+msgstr ""
+
+msgid "We've validated your order number."
+msgstr ""
+
+msgid "You can update now, or later on your <a href=\"%s\">Themes page</a>."
+msgstr ""
+
+msgid "This update will unlock all the premium features."
+msgstr ""
+
+msgid "Updating this theme will lose any customizations you have made. 'Cancel' to stop, 'OK' to update."
+msgstr ""
+
+msgid "Update Theme"
+msgstr ""
+
+msgid "We  <strong>invalid</strong>."
+msgstr ""
+
+msgid "Please try again, or upgrade manually using the ZIP file we sent you."
+msgstr ""
+
+msgid "Note that you need a valid order number to receive automatic updates in the future."
+msgstr ""
+
+msgid "Check out the <a href='%s'>documentation</a> for %s. "
+msgstr ""
+
+msgid "Please like and follow SiteOrigin to hear about my new WordPress freebies."
+msgstr ""
+
+msgid "Theme Settings"
+msgstr ""
+
+msgid "Save Settings"
+msgstr ""
+
+msgid "Please read %s's <a href='%s'>Documentation</a>."
+msgstr ""
+
+msgid "Theme Documentation"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "<a href=\"%s\">Premium version</a> only"
+msgstr ""
+
+msgid "Unknown Field Type"
+msgstr ""
+
+msgid "Premium Theme Support"
+msgstr ""
+
+msgid "Need some theme support? Just fill out a <a href='%s'>support request</a> and we'll get back to you. "
+msgstr ""
+
+msgid "Theme Support"
+msgstr ""
+
+msgid "We offer email support to everyone who upgrades to <a href=\"%s\">%s Premium</a>."
+msgstr ""
+
+msgid "We still love you, even if you're using %s Free. We just want to offer the best service possible to the fine people who have purchased our Premium themes."
+msgstr ""
+
+msgid "%s Order Code"
+msgstr ""
+
+msgid "Order Code"
+msgstr ""
+
+msgid "Find your order code in your original download email from SiteOrigin"
+msgstr ""
+
+msgid "Theme By <a href=\"%s\">SiteOrigin</a>"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Search in Menu"
+msgstr ""
+
+msgid "Display a search link in your menu that slides out a big beautiful search bar."
+msgstr ""
+
+msgid "Latest Posts Title"
+msgstr ""
+
+msgid "Copyright Message"
+msgstr ""
+
+msgid "Attribution Link"
+msgstr ""
+
+msgid "Hide or display \"Theme By SiteOrigin\" link from your footer."
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Choose the style of your site."
+msgstr ""
+
+msgid "Link Color"
+msgstr ""
+
+msgid "Home Page Slider"
+msgstr ""
+
+msgid "Transition Delay"
+msgstr ""
+
+msgid "Number of milliseconds a photo is displayed for."
+msgstr ""
+
+msgid "How many milliseconds the transition takes."
+msgstr ""
+
+msgid "Post Count"
+msgstr ""
+
+msgid "The number of posts displayed on your home page slider."
+msgstr ""
+
+msgid "Posts"
+msgstr ""
+
+msgid "How Snapshot chooses your home page slides."
+msgstr ""
+
+msgid "Social"
+msgstr ""
+
+msgid "Share Buttons"
+msgstr ""
+
+msgid "Show share buttons next to posts"
+msgstr ""
+
+msgid "Twitter Username"
+msgstr ""
+
+msgid "Recommend SiteOrigin"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Recommends your's and SiteOrigin's Twitter accounts after someone tweets your post."
+msgstr ""
+
+msgid "Ajax Comments"
+msgstr ""
+
+msgid "Let your visitors post comments without leaving the page."
+msgstr ""
+
+msgid "Site Messages"
+msgstr ""
+
+msgid "Error 404 Message"
+msgstr ""
+
+msgid "No Search Results"
+msgstr ""
+
+msgid "Latest Posts"
+msgstr ""
+
+msgid "Copyright &copy; {sitename} {year}"
+msgstr ""
+
+msgid "We couldn't find what you were looking for."
+msgstr ""
+
+msgid "No results."
+msgstr ""
+
+msgid "Main Menu"
+msgstr ""
+
+msgid "Site Footer"
+msgstr ""
+
+msgid "Sidebar Exclude"
+msgstr ""
+
+msgid "Exclude"
+msgstr ""
+
+msgid "Post Video"
+msgstr ""
+
+msgid "Post videos are available in <a href=\"%s\">Snapshot Premium</a>."
+msgstr ""
+
+msgid "No Comments"
+msgstr ""
+
+msgid "One Comment"
+msgstr ""
+
+msgid "% Comments"
+msgstr ""
+
+msgid "%s Comments"
+msgstr ""
+
+msgid "Previous Page"
+msgstr ""
+
+msgid "Next Page"
+msgstr ""
+
+msgid "Custom CSS"
+msgstr ""
+
+msgid "%s adds any custom CSS you enter here into your site's header. "
+msgstr ""
+
+msgid "These changes will persist across updates so it's best to make all your changes here. "
+msgstr ""
+
+msgid "Contact <a href='%s' target='_blank'>SiteOrigin Support</a> for help with making edits. "
+msgstr ""
+
+msgid "Changes apply to %s and its child themes"
+msgstr ""
+
+msgid "Save CSS"
+msgstr ""
+
+msgid "like"
+msgstr ""
+
+msgid "Search Text in Menu"
+msgstr ""
+
+msgid "The search text to display in your menu."
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Post Date"
+msgstr ""
+
+msgid "Modified Date"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "By Comment Count"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Enter a full video URL"
+msgstr ""
+
+msgid "This Slider Will Display Your Post's Featured Images... So Start Adding Some Posts."
+msgstr ""
+
+msgid "Upgrade To Snapshot Premium"
+msgstr ""
+
+msgid "If you've enjoyed using Snapshot, you'll going to love Snapshot Premium. It's a robust upgrade to Snapshot that gives you loads of cool features and email support. At just <strong>$9</strong>, it's a cost effective way to give your site a professional edge."
+msgstr ""
+
+msgid "If you're not delighted with Snapshot Premium, I'll give you a full refund"
+msgstr ""
+
+msgid "Remember, if you're not satisfied, you get your money back"
+msgstr ""
+
+msgid "Sprite Maps"
+msgstr ""
+
+msgid "If you're targeting a perfect Google PageSpeed score and all the SEO benefits it brings, then sprite maps are essential. They'll make your site load faster and put less load on your servers - saving you cash."
+msgstr ""
+
+msgid "Video Posts"
+msgstr ""
+
+msgid "Are you more of a video guy/gal? Snapshot Premium makes adding videos, from any popular video sharing site, easy. Your video goes front and center - where the featured photo usually goes. Perfect for your video blog or web series."
+msgstr ""
+
+msgid "Keep the conversation flowing with ajax comments. Your visitors will be able to post comments without leaving the page or interrupting your videos. Ajax comments makes commenting more enjoyable for your visitors. So you'll probably get more comments and more visitors."
+msgstr ""
+
+msgid "A Dashing Dark Style"
+msgstr ""
+
+msgid "Prefer to keep the lights out? Snapshot Premium ships with both dark and light styles. So you can set the mood you really want."
+msgstr ""
+
+msgid "Remove Attribution Links"
+msgstr ""
+
+msgid "Want to look professional? Snapshot Premium gives you the option to remove the \"Theme by SiteOrigin\" text from your footer in the options panel."
+msgstr ""
+
+msgid "Slick Search"
+msgstr ""
+
+msgid "Snapshot Premium has an option to add a non-obtrusive search button to your main menu. Clicking it slides out a big, beautiful search bar so your visitors can explore your content."
+msgstr ""
+
+msgid "Continued Updates"
+msgstr ""
+
+msgid "We'll keep Snapshot Premium up to date with new features and performance enhancements."
+msgstr ""
+
+msgid "Email Support"
+msgstr ""
+
+msgid "New to WordPress? Need to chat to someone? There is a WordPress guru, waiting to answer your questions. You'll be familiar with our theme in no time."
+msgstr ""
+
+msgid "If you've enjoyed using Snapshot, you're going to love Snapshot Premium. It's a robust upgrade to Snapshot that gives you loads of cool features and premium support. At just $7.50, it's a cost effective way to give your site a professional edge."
+msgstr ""
+
+msgid "Premium Support"
+msgstr ""
+
+msgid "Risk Free Money Back Guarantee"
+msgstr ""
