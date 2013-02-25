@@ -6,7 +6,7 @@
 
 	
 	<script language="javascript" >
-	document.getElementById("noneed").style.visibility = "hidden";
+	document.getElementById("noneed").style.display = "none";
 	</script>
 	
 	
@@ -19,12 +19,12 @@
 	
 	
  target is used for optional thickbox content -->
-<!--	<div id="target_[+id+]"></div>
-	<div id="cctm_instance_wrapper_[+id+]" class="cctm_instance_wrapper">
+<div id="target_[+id+]"></div>
+	<div id="cctm_instance_wrapper_[+id+]" class="cctm_instance_wrapper" style="display:none">
 		[+content+]
 	</div> 
 	[+error_msg+]
-	<p class="cctm_description">[+description+]</p>		-->
+	<p class="cctm_description">[+description+]</p>		
 </div>
 
 

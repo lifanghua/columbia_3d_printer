@@ -922,7 +922,12 @@ function do_meta_boxes( $screen, $context, $object ) {
 					echo '<div id="' . $box['id'] . '" class="postbox ' . postbox_classes($box['id'], $page) . $hidden_class . '" ' . '>' . "\n";
 					if ( 'dashboard_browser_nag' != $box['id'] )
 						echo '<div class="handlediv" title="' . esc_attr__('Click to toggle') . '"><br /></div>';
-					echo "<h3 class='hndle'><span>{$box['title']}</span></h3>\n";
+						
+					///////////////////////////modified: special case in custom fields
+					if('Custom Fields'== $box['title'])
+						echo "<h3 class='hndle'><span>Step3: Rotate your model to get a perfect view!</span></h3>\n";
+					else
+						echo "<h3 class='hndle'><span>{$box['title']}</span></h3>\n";
 					echo '<div class="inside">' . "\n";
 					call_user_func($box['callback'], $object, $box);
 					echo "</div>\n";

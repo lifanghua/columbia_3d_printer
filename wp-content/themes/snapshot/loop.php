@@ -5,15 +5,6 @@
 				<div <?php post_class('post') ?>>
 				
 				
-				
-				<?php 
-		/*		global $wpdb;
-				$query =  "select * from $wpdb->postmeta";
-				$result= $wpdb->get_results($query);
-	print_r($result);
-		*/		?>
-				
-				
 					<div class="post-background">
 
 
@@ -21,6 +12,9 @@
 						<?php else : ?><img src="<?php print get_template_directory_uri() ?>/images/defaults/no-thumbnail.jpg" width="310" height="420" class="thumbnail" />
 						<?php endif 												?>
 						<?php
+						
+						
+						////////////////modified here to get the banner and thumbnail
 						global $wpdb;
 						$post_id = get_the_ID();
 						$query = "
@@ -32,11 +26,7 @@
 						
 						
 						$result=$wpdb->get_results($query);
-					//	print_r($result);
-					//	echo $result;
-						
-						
-						
+
 						?>
 						<?php if($result != NULL){?>
 						<div class="banner">
@@ -51,7 +41,7 @@
 						
 
 						
-							<h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
+							<h2><a href="<?php the_permalink() ?>"><?php echo simple_fields_value('model_name') ?></a></h2>
 							<div class="excerpt">
 							
 							
