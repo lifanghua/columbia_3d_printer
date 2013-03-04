@@ -348,19 +348,268 @@ function snapshot_attachment_save($post){
 endif;
 add_filter('attachment_fields_to_save', 'snapshot_attachment_save', 10, 2);
 
-
+/*
 if(!function_exists('snapshot_add_meta_boxes')):
 /**
  * Add the relevant metaboxes.
  * 
  * @action add_meta_boxes
- */
+
 function snapshot_add_meta_boxes(){
 	if(defined('SO_IS_PREMIUM')) return;
 	add_meta_box('snapshot-post-video', __('Post Video', 'snapshot'), 'snapshot_meta_box_video_render', 'post', 'side');
 }
 endif;
 add_action('add_meta_boxes', 'snapshot_add_meta_boxes');
+*/
+/////////////////////////////modified change the appearance of page in new post
+
+
+/*-----------------------------------------------------------------------------------*/
+/* hide admin_bar on the front end */
+/*-----------------------------------------------------------------------------------*/
+if(!current_user_can('edit_pages'))
+add_filter('show_admin_bar', '__return_false');
+
+
+/*-----------------------------------------------------------------------------------*/
+/* hide some in sidebar */
+/*-----------------------------------------------------------------------------------*/
+add_action('admin_head', 'remove_sidebar', 0);
+function remove_sidebar(){
+if(!current_user_can('edit_pages')){
+	global $menu;
+	//remove_menu_page('index.php');		/* Hides Dashboard menu */
+	remove_menu_page('separator1');		/* Hides separator under Dashboard menu*/	
+	}
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Remove unwanted metabox for some user */
+/*-----------------------------------------------------------------------------------*/
+function customize_meta_boxes() {
+if(!current_user_can('administrator')){
+  /* Removes meta boxes from Posts */
+  remove_meta_box('postcustom','post','normal');
+  remove_meta_box('trackbacksdiv','post','normal');
+  remove_meta_box('commentstatusdiv','post','normal');
+  remove_meta_box('commentsdiv','post','normal');
+  remove_meta_box('tagsdiv-post_tag','post','normal');
+  remove_meta_box('postexcerpt','post','normal');
+  remove_meta_box('slugdiv','post','normal');
+  remove_meta_box('categorydiv','post','normal');
+  remove_meta_box('revisionsdiv','post','normal');
+  remove_meta_box('snapshot-post-video','post','side');
+  remove_meta_box('postimagediv','post','side');
+  remove_meta_box('titlediv','post','normal');
+}
+}
+add_action('admin_menu','customize_meta_boxes');
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Remove Warning of Update */
+/*-----------------------------------------------------------------------------------*/
+ if ( 1 ) {
+	 add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
+	 add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
+	 add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) );
+ }
+
+/*-----------------------------------------------------------------------------------*/
+/* Remove Unwanted Admin Menu Items */
+/*-----------------------------------------------------------------------------------*/
+function remove_admin_menu_items() {
+	$remove_menu_items = array( __('Media'), __('Tools'), __('Profile'), __('Comments'));
+	global $menu;
+	end ($menu);
+	while (prev($menu)){
+		$item = explode(' ',$menu[key($menu)][0]);
+		if(in_array($item[0] != NULL?$item[0]:"" , $remove_menu_items)){
+		unset($menu[key($menu)]);}
+	}
+}
+
+add_action('admin_menu', 'remove_admin_menu_items');
+
+
+/*-----------------------------------------------------------------------------------*/
+/* hide admin bar on the backend */
+/*-----------------------------------------------------------------------------------*/
+add_action( 'init', 'fb_remove_admin_bar', 0 );
+function fb_remove_admin_bar() {
+
+if(!current_user_can('edit_pages')){
+    wp_deregister_script( 'admin-bar' );
+    wp_deregister_style( 'admin-bar' );
+    remove_action( 'init', '_wp_admin_bar_init' );
+    remove_action( 'wp_footer', 'wp_admin_bar_render', 1000 );
+    remove_action( 'admin_footer', 'wp_admin_bar_render', 1000 );
+    // maybe also: 'wp_head'
+    foreach ( array( 'wp_head', 'admin_head' ) as $hook ) {
+        add_action(
+            $hook,
+            create_function(
+                    '',
+                    "echo '<style>body.admin-bar, body.admin-bar #wpcontent, body.admin-bar #adminmenu {
+                         padding-top: 0px !important;
+                    }
+                    html.wp-toolbar {
+                        padding-top: 0px !important;
+                    }</style>';"
+            )
+        );
+    }
+}
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Hide Screen Option and Help for Others */
+/* If wanna change the format of the page*/
+/* enable the screen option, do it and hide it again*/
+/*-----------------------------------------------------------------------------------*/
+if(is_admin()):
+function remove_screen_options_tab()
+{
+    return false;
+}
+add_filter('screen_options_show_screen', 'remove_screen_options_tab');
+endif;
+
+if(is_admin()):
+function hide_help() {
+    echo '<style type="text/css">
+            #contextual-help-link-wrap { display: none !important; }
+    </style>';
+}
+add_action('admin_head', 'hide_help');
+endif;
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Change 'post' to 'Models' */
+/*-----------------------------------------------------------------------------------*/
+function change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'Models';
+    $submenu['edit.php'][5][0] = 'Models';
+    $submenu['edit.php'][10][0] = 'Add Models';
+//    $submenu['edit.php'][15][0] = 'Status'; // Change name for categories
+ //   $submenu['edit.php'][16][0] = 'Labels'; // Change name for tags
+    echo '';
+}
+
+function change_post_object_label() {
+        global $wp_post_types;
+        $labels = &$wp_post_types['post']->labels;
+        $labels->name = 'Models';
+        $labels->singular_name = 'Model';
+        $labels->add_new = 'Add Model';
+        $labels->add_new_item = 'Add Model';
+        $labels->edit_item = 'Edit Models';
+        $labels->new_item = 'Model';
+        $labels->view_item = 'View Model';
+        $labels->search_items = 'Search Models';
+        $labels->not_found = 'No Models found';
+        $labels->not_found_in_trash = 'No Models found in Trash';
+    }
+    add_action( 'init', 'change_post_object_label' );
+    add_action( 'admin_menu', 'change_post_menu_label' );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Change Default Text on Title Area */
+/*-----------------------------------------------------------------------------------*/
+function title_text_input( $title ){
+     return $title = 'Enter Your Model Name Here';
+}
+add_filter( 'enter_title_here', 'title_text_input' );
+
+/*-----------------------------------------------------------------------------------*/
+/* Automatically log every user in as guest */
+/*-----------------------------------------------------------------------------------*/
+function auto_login() {
+    if (!is_user_logged_in()) {
+        //determine WordPress user account to impersonate
+        $user_login = 'guest';
+
+       //get user's ID
+        $user = get_userdatabylogin($user_login);
+        $user_id = $user->ID;
+  
+        //login
+        wp_set_current_user($user_id, $user_login);
+        wp_set_auth_cookie($user_id);
+        do_action('wp_login', $user_login);
+    }
+} 
+add_action('init', 'auto_login');
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Avoid saving the metabox sequence created by users in the server */
+/*-----------------------------------------------------------------------------------*/
+add_action('check_ajax_referer', 'prevent_meta_box_order');
+function prevent_meta_box_order($action)
+{
+   if ('meta-box-order' == $action /* && $wp_user == 'santa claus' */) {
+      die('-1');
+   }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Customize Submit Box */
+/*-----------------------------------------------------------------------------------*/
+add_action('add_meta_boxes','custom_submit_box');
+function custom_submit_box()
+{
+	
+    echo '<style type="text/css">
+            .misc-pub-section { display: none !important; }
+    </style>';
+ //    echo '<script type="text/javascript">
+  //          document.getElementById("minor-publishing-actions").style.display = "none";
+    //</script>';
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/* TRYING to send email */
+/*-----------------------------------------------------------------------------------*/
+function email_friends( $post_ID )  
+{
+	$uni=simple_fields_value('uniuni');
+   $friends =$uni."@columbia.edu";
+   wp_mail( $friends, "sally's blog updated", 'I just put something on my blog: http://blog.example.com' );
+
+   return $post_ID;
+}
+add_action( 'publish_post', 'email_friends' );
+
+/*
+function send_email_users($post_ID)  {
+    $users=simple_fields_value('uniuni');
+    mail($users, "New Article is Published", 'A new article have been published on http://www.wordpressapi.com. Please visit');
+    return $post_ID;
+}
+add_action('publish_post', 'send_email_users');
+
+CHANGE THE MENU
+HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+
+function register_custom_menu_page() {
+	global $menu;
+   add_menu_page('custom menu title', 'custom menu', 'add_users', 'myplugin/myplugin-index.php', '',   plugins_url('myplugin/images/icon.png'), 6);
+}
+add_action('admin_head', 'register_custom_menu_page');
+/////////////////////////////////
+
+
+
 
 
 if(!function_exists('snapshot_meta_box_video_render')) :
@@ -413,7 +662,6 @@ class Snapshot_Walker_Nav_Menu extends Walker_Nav_Menu {
 	}
 }
 endif;
-
 
 
 function test(){

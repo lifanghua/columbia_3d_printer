@@ -41,7 +41,7 @@
 						
 
 						
-							<h2><a href="<?php the_permalink() ?>"><?php echo simple_fields_value('model_name') ?></a></h2>
+							<h2><a href="<?php the_permalink() ?>"><?php print get_the_title() ?></a></h2>
 							<div class="excerpt">
 							
 							

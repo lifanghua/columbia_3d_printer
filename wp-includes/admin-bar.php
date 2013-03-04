@@ -33,6 +33,7 @@ function _wp_admin_bar_init() {
 
 	$wp_admin_bar->initialize();
 	$wp_admin_bar->add_menus();
+	
 
 	return true;
 }

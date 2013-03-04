@@ -53,7 +53,7 @@ if ( 'publish' == $post->post_status ) {
 <div class="clear"></div>
 </div><!-- #minor-publishing-actions -->
 
-<div id="misc-publishing-actions">
+<div id="misc-publishing-actions" >
 
 <div class="misc-pub-section"><label for="post_status"><?php _e('Status:') ?></label>
 <span id="post-status-display">
@@ -484,32 +484,31 @@ function post_custom_meta_box($post) {
 <?php////////////////////////////////////////////////////////////////////////// modified?>
 
 
-
 <div id="main_frame" style="width:490px; margin:auto; position:relative; font-size: 9pt; color: #777777;">
-				<div id="cvd" style="display:none">
-				<canvas id="cv" style="border: 1px solid;" width="490" height="368"></canvas>
-				<button id="screenshot" onclick="takeScreenshot();" type="button">Snapshot</button>
-				</div>
+	<div id="cvd" style="display:none">
+		<canvas id="cv" style="border: 1px solid;" width="490" height="368"></canvas>
+			<button id="screenshot" onclick="takeScreenshot();" type="button">Snapshot</button>
+	</div>
 
-				<script type="text/javascript" src="./js/jsc3d.js"></script>
-
-				<script type="text/javascript">
+	<script type="text/javascript" src="./js/jsc3d.js"></script>
+<?php $id=$post->ID  ?>
+	<script type="text/javascript">
 				
-					n = 0;
-					iData = [];
-					function takeScreenshot() {
-						var canvas = document.getElementById("cv");
-						var imgData    = canvas.toDataURL("image/png");
-						n++;
-						image = 'image'+n;
-						iData[n] = imgData;
-						document.getElementById("sc").innerHTML += '<img src="'+imgData+'" id="'+image+'">';
-						current=document.getElementById(image);
-						current.style.width='50px';
+	n = 0;
+	iData = [];
+	function takeScreenshot() {
+		var canvas = document.getElementById("cv");
+		var imgData    = canvas.toDataURL("image/png");
+		n++;
+		image = 'image'+n;
+		iData[n] = imgData;
+		document.getElementById("sc").innerHTML += '<img src="'+imgData+'" id="'+image+'">';
+		current=document.getElementById(image);
+		current.style.width='50px';
 		
 		var aid;
 		
-						//try ajax uploader
+		//try ajax uploader
         jQuery.ajax({
             type: 'post',
             url: ajaxurl,
@@ -522,52 +521,81 @@ function post_custom_meta_box($post) {
             },
             success: function( res ) {
                 //var attID = res.replace(/0$/i, '');
-                alert('Success: ' + res);
+                //alert('Success: ' + res);
                 aid = res;
                 
                 
-                	jQuery.ajax({
-            type: 'post',
-            url: ajaxurl,
-            data: {
-                action: 'set_post_thumbnailmy',
-                //_ajax_nonce: jQuery('#nonce_add').val(),
-                post: jQuery('#post_ID').val(),
-                thumbnail_id: aid
-            },
-            success: function( res ) {
-                //var attID = res.replace(/0$/i, '');
-                alert('Success: ' + res + aid);
-            }
-        });     
+        		jQuery.ajax({
+		            type: 'post',
+        		    url: ajaxurl,
+            		data: {
+                		action: 'set_post_thumbnailmy',
+		                //_ajax_nonce: jQuery('#nonce_add').val(),
+        		        post: jQuery('#post_ID').val(),
+            		    thumbnail_id: aid
+           			 },
+           			 success: function( res ) {
+                		//var attID = res.replace(/0$/i, '');
+              			  //alert('Success: ' + res + aid);
+           			 }
+        		});     
                 
             }
         });       
-					}
+	}
+	
+	
+	
+	
+	if( "<?php echo  get_custom_field('stl:raw'); ?>"!=''){
+
+				    var canvas = document.getElementById('cv');				//get the canvas to draw on
+					var viewer = new JSC3D.Viewer(canvas);					//initialize a new 3D viewer object
+					var logoTimerID = 0;
+					var test="<?php echo wp_get_attachment_url(get_custom_field('stl:raw')); ?>";
+					var test1="<?php echo get_custom_field('stl:raw');?>"; 
+					
+					viewer.setParameter('SceneUrl', "<?php echo wp_get_attachment_url(get_custom_field('stl:raw')); ?>");			//set the URL of 3D model file
+					viewer.setParameter('RenderMode', 'smooth');				//set render mode to "smooth", which should always be the case
+
+					viewer.init();								//always need init()
+					viewer.update();							//always do update() to put it on the screen
+					
+					
+					document.getElementById("cvd").style.display = "";
+}
+	
+		
+	</script>
 				
-				</script>
+	<?php the_content() ?>
 				
-				<?php the_content() ?>
+	<?php global $numpages; if(!empty($numpages) || get_the_tag_list() != '') : ?>
+	<div class="clear"></div>
+	<?php endif; ?>
 				
-				<?php global $numpages; if(!empty($numpages) || get_the_tag_list() != '') : ?>
-					<div class="clear"></div>
-				<?php endif; ?>
-				
-				<?php wp_link_pages() ?>
-				<?php the_tags() ?>
+	<?php wp_link_pages() ?>
+	<?php the_tags() ?>
 </div>
 
-				<div id="sc">
+<div id="sc">
 				
-				</div>
+</div>
 
 
 <?php ////////////////////////////////////////////////////////////////////////// 
 
-
 ////////////////////////change the form of the custom fields metabox; modified  ?>
+
+Rotate your model to the optimal view, and click snapshot.
+The image will then be the thumbnail of your model in the homepage.
 <?php
-$metadata = has_meta($post->ID);/*
+$metadata = has_meta($post->ID);
+
+
+
+
+/*
 foreach ( $metadata as $key => $value ) {
 	if ( is_protected_meta( $metadata[ $key ][ 'meta_key' ], 'post' ) || ! current_user_can( 'edit_post_meta', $post->ID, $metadata[ $key ][ 'meta_key' ] ) )
 		unset( $metadata[ $key ] );

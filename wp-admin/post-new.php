@@ -9,6 +9,8 @@
 /** Load WordPress Administration Bootstrap */
 require_once('./admin.php');
 
+
+
 if ( !isset($_GET['post_type']) )
 	$post_type = 'post';
 elseif ( in_array( $_GET['post_type'], get_post_types( array('show_ui' => true ) ) ) )

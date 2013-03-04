@@ -131,9 +131,13 @@ foreach ( get_object_taxonomies( $post ) as $tax_name ) {
 
 if ( post_type_supports($post_type, 'page-attributes') )
 	add_meta_box('pageparentdiv', 'page' == $post_type ? __('Page Attributes') : __('Attributes'), 'page_attributes_meta_box', null, 'side', 'core');
-
+/////////////////////////////////modified remove the featured image metabox
+/*
 if ( current_theme_supports( 'post-thumbnails', $post_type ) && post_type_supports( $post_type, 'thumbnail' ) )
 		add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', null, 'side', 'low');
+		
+		*/
+		
 
 if ( post_type_supports($post_type, 'excerpt') )
 	add_meta_box('postexcerpt', __('Excerpt'), 'post_excerpt_meta_box', null, 'normal', 'core');
@@ -326,17 +330,22 @@ wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
 <div id="poststuff">
 
 <div id="post-body" class="metabox-holder columns-<?php echo 1 == get_current_screen()->get_columns() ? '1' : '2'; ?>">
+
+
+<?php
+/*-----------------------------------------------------------------------------------*/
+/* Remove Title and Text(should have been in function.php, but does not work) */
+/*-----------------------------------------------------------------------------------*/
+?>
 <div id="post-body-content">
+
 <?php if ( post_type_supports($post_type, 'title') ) { ?>
 <div id="titlediv">
-<?php /*
 
-/////////////////////////////////////////////////modified
 <div id="titlewrap">
 	<label class="screen-reader-text" id="title-prompt-text" for="title"><?php echo apply_filters( 'enter_title_here', __( 'Enter title here' ), $post ); ?></label>
 	<input type="text" name="post_title" size="30" value="<?php echo esc_attr( htmlspecialchars( $post->post_title ) ); ?>" id="title" autocomplete="off" />
 </div>
-*/?>
 <div class="inside">
 <?php
 $sample_permalink_html = $post_type_object->public ? get_sample_permalink_html($post->ID) : '';
@@ -362,18 +371,13 @@ wp_nonce_field( 'samplepermalink', 'samplepermalinknonce', false );
 <?php
 }
 
-do_action( 'edit_form_after_title' );
+do_action( 'edit_form_after_title' );?>
 
-
-///////////////
-//add the ! to "remove" the editor modified
-///////////////
-///////////////
-
+<?php /* ?>
 if ( post_type_supports($post_type, 'editor') ) {
 ?>
 
-<?php /*
+
 <div id="postdivrich" class="postarea">
 
 <?php wp_editor($post->post_content, 'content', array('dfw' => true, 'tabfocus_elements' => 'sample-permalink,post-preview', 'editor_height' => 360) ); ?>
@@ -398,7 +402,7 @@ if ( post_type_supports($post_type, 'editor') ) {
 
 </div>
 
-*/?>
+
 
 <?php } ?>
 
@@ -433,10 +437,10 @@ if ( 'page' == $post_type ) {
 <?php } ?>
 
 
-
-
-<?php do_action( 'edit_form_after_editor' ); ?>
+<?php do_action( 'edit_form_after_editor' ); */?>
 </div><!-- /post-body-content -->
+
+
 
 <div id="postbox-container-1" class="postbox-container">
 <?php
