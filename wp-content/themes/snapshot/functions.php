@@ -349,7 +349,7 @@ endif;
 add_filter('attachment_fields_to_save', 'snapshot_attachment_save', 10, 2);
 
 /*
-if(!function_exists('snapshot_add_meta_boxes')):
+if(!function_exists('snapshot_add_meta_boxes')):modified: cannot remove it using remove_meta_box
 /**
  * Add the relevant metaboxes.
  * 
@@ -362,27 +362,15 @@ function snapshot_add_meta_boxes(){
 endif;
 add_action('add_meta_boxes', 'snapshot_add_meta_boxes');
 */
-/////////////////////////////modified change the appearance of page in new post
-
+/***************************************************************************************
+***************************************************************************************/
+//modified
 
 /*-----------------------------------------------------------------------------------*/
 /* hide admin_bar on the front end */
 /*-----------------------------------------------------------------------------------*/
 if(!current_user_can('edit_pages'))
 add_filter('show_admin_bar', '__return_false');
-
-
-/*-----------------------------------------------------------------------------------*/
-/* hide some in sidebar */
-/*-----------------------------------------------------------------------------------*/
-add_action('admin_head', 'remove_sidebar', 0);
-function remove_sidebar(){
-if(!current_user_can('edit_pages')){
-	global $menu;
-	//remove_menu_page('index.php');		/* Hides Dashboard menu */
-	remove_menu_page('separator1');		/* Hides separator under Dashboard menu*/	
-	}
-}
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -417,21 +405,6 @@ add_action('admin_menu','customize_meta_boxes');
 	 add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) );
  }
 
-/*-----------------------------------------------------------------------------------*/
-/* Remove Unwanted Admin Menu Items */
-/*-----------------------------------------------------------------------------------*/
-function remove_admin_menu_items() {
-	$remove_menu_items = array( __('Media'), __('Tools'), __('Profile'), __('Comments'));
-	global $menu;
-	end ($menu);
-	while (prev($menu)){
-		$item = explode(' ',$menu[key($menu)][0]);
-		if(in_array($item[0] != NULL?$item[0]:"" , $remove_menu_items)){
-		unset($menu[key($menu)]);}
-	}
-}
-
-add_action('admin_menu', 'remove_admin_menu_items');
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -555,7 +528,7 @@ add_action('init', 'auto_login');
 add_action('check_ajax_referer', 'prevent_meta_box_order');
 function prevent_meta_box_order($action)
 {
-   if ('meta-box-order' == $action /* && $wp_user == 'santa claus' */) {
+   if ('meta-box-order' == $action) { // && $wp_user == 'santa claus' 
       die('-1');
    }
 }
@@ -579,6 +552,7 @@ function custom_submit_box()
 /*-----------------------------------------------------------------------------------*/
 /* TRYING to send email */
 /*-----------------------------------------------------------------------------------*/
+/*
 function email_friends( $post_ID )  
 {
 	$uni=simple_fields_value('uniuni');
@@ -601,13 +575,63 @@ CHANGE THE MENU
 HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 */
 
+
+/*-----------------------------------------------------------------------------------*/
+/* Remove Unwanted Admin Menu Items */
+/*-----------------------------------------------------------------------------------*/
+function remove_admin_menu_items() {
+if(!current_user_can('edit_pages')){
+	$remove_menu_items = array( __('Media'), __('Tools'), __('Profile'), __('Comments'));
+	global $menu;
+	end ($menu);
+	while (prev($menu)){
+		$item = explode(' ',$menu[key($menu)][0]);
+		if(in_array($item[0] != NULL?$item[0]:"" , $remove_menu_items)){
+		unset($menu[key($menu)]);}
+	}
+	}
+}
+add_action('admin_menu', 'remove_admin_menu_items');
+
+/*-----------------------------------------------------------------------------------*/
+/* Add the new menu of instruction*/
+/*-----------------------------------------------------------------------------------*/
+
 function register_custom_menu_page() {
 	global $menu;
-   add_menu_page('custom menu title', 'custom menu', 'add_users', 'myplugin/myplugin-index.php', '',   plugins_url('myplugin/images/icon.png'), 6);
+    add_menu_page('instruction_newpost', 'Instructions', 'read', '/help.php', '', menu-dashboard, 7);
 }
-add_action('admin_head', 'register_custom_menu_page');
-/////////////////////////////////
+add_action('admin_menu', 'register_custom_menu_page');
 
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Change dashboard to homepage, Models to new model*/
+/*-----------------------------------------------------------------------------------*/
+function edit_admin_menus() {  
+if(!current_user_can('edit_pages')){
+    global $menu;  
+    
+    $menu[2][0] = 'Back'; // Change 'Dashboard' to 'Back'  
+    $menu[2][2] = home_url( "/" ); //Change the link 
+    
+    
+    $menu[5][0] = 'New Model';
+    $menu[5][2] = 'post-new.php';
+    }  
+}
+add_action( 'admin_menu', 'edit_admin_menus' );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Hide the part of Media Uploading*/
+/*-----------------------------------------------------------------------------------*/
+//394 handlers.js
+//1208 media.php
+
+
+/***************************************************************************************
+***************************************************************************************/
 
 
 
