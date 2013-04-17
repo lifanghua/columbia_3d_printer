@@ -474,6 +474,11 @@ a {
 	display: block;
 }
 
+/* Modified somewhere here to accomodate the thumbnail size
+-------------------------------------------------------------- */
+
+
+
 /* =Post Loop 
 -------------------------------------------------------------- */
 
@@ -502,9 +507,9 @@ a {
 
 #post-loop .post-background {
 	position: relative;
-	height: 420px;
+	height: 320px;
 	z-index: 1;
-	background: #1c1c1c;
+	background: #ffffff;
 	
 }
 
@@ -532,6 +537,15 @@ a {
 	opacity: 0;
 	overflow: hidden;
 	padding: 5px 20px;
+	
+	z-index: 1;
+}
+
+#front-vote.vote {
+	position: absolute;
+	z-index:99;
+	left: 5px;
+	width: 100%;
 }
 
 #post-loop .post-content h2 {
@@ -558,28 +572,28 @@ a {
 -------------------------------------------------------------- */
 
 #post-loop .post-content .date,
-#post-loop .post-content .comments {
+#post-loop .post-content .author_name {
 	position: absolute;
 	
 	color: #dddddd;
-	display: none;
+/*	display: none;	*/
 	font-family: 'Belgrano', serif;
 	font-size: 12px;
 }
 
 #post-loop .post-content:hover .date,
-#post-loop .post-content:hover .comments {
+#post-loop .post-content:hover .author_name {
 	display: block;
 }
 
 #post-loop .post-content .date a,
-#post-loop .post-content .comments a {
+#post-loop .post-content .author_name a {
 	color: #dddddd;
 	text-decoration: none;
 }
 
 #post-loop .post-content .date em,
-#post-loop .post-content .comments em {
+#post-loop .post-content .author_name em {
 	width: 16px;
 	height: 16px;
 	
@@ -589,14 +603,13 @@ a {
 }
 
 #post-loop .post-content .date {
-	bottom: 10px;
+	bottom: 200px;
 	left: 10px;
-	
 }
 
-#post-loop .post-content .comments {
+#post-loop .post-content .author_name {
 	right: 10px;
-	bottom: 10px;
+	bottom: 200px;
 	
 }
 
@@ -604,8 +617,8 @@ a {
 	background-image: url(images/sprites/loop-icon-date.png);
 }
 
-#post-loop .post-content .comments em {
-	background-image: url(images/sprites/loop-icon-comments.png);
+#post-loop .post-content .author_name em {
+/*	background-image: url(images/sprites/loop-icon-comments.png);	*/
 }
 
 /* =Post Loop  : Corners 
@@ -620,7 +633,7 @@ a {
 
 #post-loop .corner.corner-se {
 	right: 5px;
-	bottom: 5px;
+	bottom: 96px;
 	
 	background: url(images/sprites/loop-corner-se.png) no-repeat;
 }

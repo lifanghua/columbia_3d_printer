@@ -361,7 +361,73 @@ function snapshot_add_meta_boxes(){
 }
 endif;
 add_action('add_meta_boxes', 'snapshot_add_meta_boxes');
+
+
+
 */
+
+
+
+if(!function_exists('snapshot_meta_box_video_render')) :
+/**
+ * Render the video meta box added in snapshot_add_meta_boxes
+ */
+function snapshot_meta_box_video_render(){
+	?><p><?php printf(__('Post videos are available in <a href="%s">Snapshot Premium</a>.', 'snapshot'), admin_url('themes.php?page=premium_upgrade')) ?></p><?php
+}
+endif;
+
+function snapshot_wp_page_menu($args){
+	?><div id="menu-main-menu-container"><?php
+	$args['walker'] = new Snapshot_Walker_Page; 
+	wp_page_menu($args);
+	?></div><?php
+}
+
+if(!class_exists('Snapshot_Walker_Page')) :
+class Snapshot_Walker_Page extends Walker_Page{
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "\n$indent<ul class='sub-menu'><div class='sub-wrapper'><div class='pointer'></div>\n";
+	}
+
+	function end_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "$indent</div></ul>\n";
+	}
+
+	function start_el( &$output, $page, $depth, $args, $current_page = 0 ) {
+		if ( $depth ) $indent = str_repeat("\t", $depth);
+		else $indent = '';
+
+		$output .= $indent . '<li class="menu-item"><a href="' . get_permalink($page->ID) . '">' . apply_filters( 'the_title', $page->post_title, $page->ID ) . '</a>';
+	}
+}
+endif;
+
+if(!class_exists('Snapshot_Walker_Nav_Menu')) :
+class Snapshot_Walker_Nav_Menu extends Walker_Nav_Menu {
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "\n$indent<ul class='sub-menu'><div class='sub-wrapper'><div class='pointer'></div>\n";
+	}
+
+	function end_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "$indent</div></ul>\n";
+	}
+}
+endif;
+
+
+function test(){
+	print 'dafds';
+}
+
+//add_action("add_attachment", 'test');
+//add_action("edit_attachment", 'test');
+//add_action("testit", 'test');
+
 /***************************************************************************************
 ***************************************************************************************/
 //modified
@@ -599,7 +665,7 @@ add_action('admin_menu', 'remove_admin_menu_items');
 
 function register_custom_menu_page() {
 	global $menu;
-    add_menu_page('instruction_newpost', 'Instructions', 'read', '/help.php', '', menu-dashboard, 7);
+    add_menu_page('instruction_newpost', 'Instructions', 'read', home_url('?page_id=472'), '', menu-dashboard, 7);
 }
 add_action('admin_menu', 'register_custom_menu_page');
 
@@ -629,69 +695,16 @@ add_action( 'admin_menu', 'edit_admin_menus' );
 //394 handlers.js
 //1208 media.php
 
-
+/*-----------------------------------------------------------------------------------*/
+/* Hide 'From URL' and 'Media Library' when Media Uploading*/
+/*-----------------------------------------------------------------------------------*/
+function remove_media_library_tab($tabs) {
+    unset($tabs['library']);
+    unset($tabs['type_url']);
+    return $tabs;
+}
+add_filter('media_upload_tabs', 'remove_media_library_tab');
 /***************************************************************************************
 ***************************************************************************************/
 
 
-
-
-if(!function_exists('snapshot_meta_box_video_render')) :
-/**
- * Render the video meta box added in snapshot_add_meta_boxes
- */
-function snapshot_meta_box_video_render(){
-	?><p><?php printf(__('Post videos are available in <a href="%s">Snapshot Premium</a>.', 'snapshot'), admin_url('themes.php?page=premium_upgrade')) ?></p><?php
-}
-endif;
-
-function snapshot_wp_page_menu($args){
-	?><div id="menu-main-menu-container"><?php
-	$args['walker'] = new Snapshot_Walker_Page; 
-	wp_page_menu($args);
-	?></div><?php
-}
-
-if(!class_exists('Snapshot_Walker_Page')) :
-class Snapshot_Walker_Page extends Walker_Page{
-	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "\n$indent<ul class='sub-menu'><div class='sub-wrapper'><div class='pointer'></div>\n";
-	}
-
-	function end_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "$indent</div></ul>\n";
-	}
-
-	function start_el( &$output, $page, $depth, $args, $current_page = 0 ) {
-		if ( $depth ) $indent = str_repeat("\t", $depth);
-		else $indent = '';
-
-		$output .= $indent . '<li class="menu-item"><a href="' . get_permalink($page->ID) . '">' . apply_filters( 'the_title', $page->post_title, $page->ID ) . '</a>';
-	}
-}
-endif;
-
-if(!class_exists('Snapshot_Walker_Nav_Menu')) :
-class Snapshot_Walker_Nav_Menu extends Walker_Nav_Menu {
-	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "\n$indent<ul class='sub-menu'><div class='sub-wrapper'><div class='pointer'></div>\n";
-	}
-
-	function end_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "$indent</div></ul>\n";
-	}
-}
-endif;
-
-
-function test(){
-	print 'dafds';
-}
-
-//add_action("add_attachment", 'test');
-//add_action("edit_attachment", 'test');
-//add_action("testit", 'test');

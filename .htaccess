@@ -1,16 +1,4 @@
 # Exclude the file upload and WP CRON scripts from authentication
-<FilesMatch "(async-upload\.php|wp-cron\.php|xmlrpc\.php)$">
-    Satisfy Any
-    Order allow,deny
-    Allow from all
-    Deny from none
-</FilesMatch>
-
-<IfModule mod_security.c>
-SecFilterEngine Off
-SecFilterScanPOST Off
-</IfModule>
-
 # BEGIN WordPress
 
 # END WordPress

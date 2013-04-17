@@ -63,7 +63,11 @@
 				</script>
 				
 				
-				<?php the_content() ?>
+				<?php 
+				echo "<a href=".wp_get_attachment_url(get_custom_field('stl:raw')).">Download the STL</a>";
+				if(function_exists('wpv_voting_display_vote')) wpv_voting_display_vote(get_the_ID());
+				
+				the_content() ?>
 				
 				<?php global $numpages; if(!empty($numpages) || get_the_tag_list() != '') : ?>
 					<div class="clear"></div>

@@ -58,7 +58,12 @@
 					
 				</script>
 				
-				<?php the_content() ?>
+				
+				<h2>dsdfdsf</h2>
+				<?php
+				if(function_exists('wpv_voting_display_vote')) wpv_voting_display_vote(get_the_ID());
+				
+				 the_content() ?>
 				
 				<?php global $numpages; if(!empty($numpages) || get_the_tag_list() != '') : ?>
 					<div class="clear"></div>
