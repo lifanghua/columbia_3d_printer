@@ -290,7 +290,6 @@ if ( 'post' == $post_type ) {
 
 require_once('./admin-header.php');
 ?>
-
 <div class="wrap">
 <?php screen_icon(); ?>
 <h2><?php
@@ -474,6 +473,7 @@ do_meta_boxes(null, 'advanced', $post);
 
 do_action('dbx_post_sidebar');
 
+	
 ?>
 </div><!-- /post-body -->
 <br class="clear" />

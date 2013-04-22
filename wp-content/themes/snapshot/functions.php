@@ -707,4 +707,12 @@ add_filter('media_upload_tabs', 'remove_media_library_tab');
 /***************************************************************************************
 ***************************************************************************************/
 
+add_action('wp_insert_post', 'sb_post_validation');
+function sb_post_validation() {
+	wp_enqueue_script(
+		'vf',
+		get_template_directory_uri() . '/js/vf.js',
+		array( 'jquery' )
+	);
+}
 

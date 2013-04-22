@@ -1,15 +1,15 @@
 jQuery(function($){
     // Hover effect for a post loop
     $('#post-loop .post .post-content').animate({'opacity': 0});
-    $('#post-loop .post')
+   $('#post-loop .post')
         .mouseenter(function(){
             var $$ = $(this);
-            $$.find('.post-content').clearQueue().animate({'opacity': 0.2}, 300);
+//            $$.find('.post-content').clearQueue().animate({'opacity': 0.2}, 300);
             $$.find('.corner.corner-se').clearQueue().animate({'bottom': -20, 'right' : -20}, 300);
         })
         .mouseleave(function(){
             var $$ = $(this);
-            $$.find('.post-content').clearQueue().animate({'opacity': 0}, 300);
+//            $$.find('.post-content').clearQueue().animate({'opacity': 0}, 300);
             $$.find('.corner.corner-se').clearQueue().animate({'bottom': 85, 'right' : 5}, 300);
         });
     

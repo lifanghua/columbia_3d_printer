@@ -13,21 +13,56 @@
 						<?php else : ?><img src="<?php print get_template_directory_uri() ?>/images/defaults/no-thumbnail.jpg" width="310" height="234" class="thumbnail" />
 						<?php endif 												?>
 						</div>
+						
+						
+						<!-- modified here to change the location of the information -->
+						
+						
+						<div id = "info" class = "info">
+						
+						
+						<div class= "left">
+							<div >
+						<h2><a href="<?php the_permalink() ?>"><?php print get_the_title() ?></a></h2>
+						</div>
+						
+						
+						<div class = "author_name">
+								<em></em>
+								<?php $author = simple_fields_value('author_name');  
+									$search_url = '?s='.$author;?>
+								<a href="<?php echo home_url($search_url); ?>"><?php print simple_fields_value('author_name'); ?></a>
+						</div>
+								<div class="date">
+								<em></em>
+								<a href="<?php the_permalink() ?>"><?php print get_the_date() ?></a>
+
+							</div>
+						
+						
+						</div>
 						<!-- modified here to add download and vote button -->
 						<div id="front-vote" class="vote" >
 							<?php	
-								$is_checked = simple_fields_value('Downloadable');
-								if ($is_checked) {
-								echo "<a href=".wp_get_attachment_url(get_custom_field('stl:raw')).">Download the STL</a>";} else {
-								//echo "<br>Nope, it's not checked";
-								}
+								
 
 							
-									if(function_exists('wpv_voting_display_vote'))
-										wpv_voting_display_vote(get_the_ID());
+								if(function_exists('wpv_voting_display_vote'))
+									wpv_voting_display_vote(get_the_ID());
+									
+								
+								$is_checked = simple_fields_value('Downloadable');
+								if ($is_checked) {
+								echo "<div id='down' class='down'><a href='".wp_get_attachment_url(get_custom_field('stl:raw'))."'><button class='download-itunes' >Download the STL</button></a></div>";} else {
+								//echo "<br>Nope, it's not checked";
+								}
 									
 							?>
 						</div>
+						</div>
+						
+						
+						
 						
 						<?php
 						
@@ -60,7 +95,7 @@
 							
 
 						<div class="post-content2">
-							<h2><a href="<?php the_permalink() ?>"><?php print get_the_title() ?></a></h2>
+							
 							<div class="excerpt">
 							
 							
@@ -71,18 +106,9 @@
 						
 						</div>
 							
-							<div class="date">
-								<em></em>
-								<a href="<?php the_permalink() ?>"><?php print get_the_date() ?></a>
-
-							</div>
 							
-							<div class = "author_name">
-								<em></em>
-								<?php $author = simple_fields_value('author_name');  
-									$search_url = '?s='.$author;?>
-								<a href="<?php echo home_url($search_url); ?>"><?php print simple_fields_value('author_name'); ?></a>
-							</div>
+							
+							
 							
 							<?php /*$comments = get_comment_count(get_the_ID()); ?>
 							<?php if(!empty($comments['approved'])) : ?>
