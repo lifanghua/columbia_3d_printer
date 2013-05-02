@@ -18,7 +18,7 @@ $post_type_object = get_post_type_object( $post_type );
 if ( ! $post_type_object )
 	wp_die( __( 'Invalid post type' ) );
 
-if ( ! current_user_can( $post_type_object->cap->edit_posts ) )
+if ( ! current_user_can( $post_type_object->cap->edit_others_posts ) )
 	wp_die( __( 'Cheatin&#8217; uh?' ) );
 
 $wp_list_table = _get_list_table('WP_Posts_List_Table');

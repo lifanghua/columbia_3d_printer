@@ -519,7 +519,15 @@ function get_bloginfo( $show = '', $filter = 'raw' ) {
  * @return string|null String on retrieve, null when displaying.
  */
 function wp_title($sep = '&raquo;', $display = true, $seplocation = '') {
-	global $wpdb, $wp_locale;
+		if($_REQUEST['sort'] == 1){			// sort by time
+			$title = 'time';
+				$title = apply_filters('wp_title', $title, $sep, $seplocation);
+
+			//echo $title;
+			return $title;
+		}
+		
+			global $wpdb, $wp_locale;
 
 	$m = get_query_var('m');
 	$year = get_query_var('year');

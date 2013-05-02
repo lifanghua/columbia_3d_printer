@@ -301,7 +301,7 @@ if(!function_exists('wpv_top_ajax_submit')){
  * Intefrate custom vote and voted button
  * @since 1.0
  */
-if(!function_exists('wpv_voting_get_display_vote')){
+if(!function_exists('wpv_voting_get_ _vote')){
     function wpv_voting_get_display_vote($postID){
         global $user_ID, $user_login;
         $output = '';
@@ -332,7 +332,7 @@ if(!function_exists('wpv_voting_get_display_vote')){
         ### Get custom vote count text
         $voted_custom_txt = get_option('wpv-voted-custom-txt');
         if(empty($voted_custom_txt))
-            $voted_custom_txt = 'voted';
+            $voted_custom_txt = ''; /*****************changed 'voted' to '' modified*/
         
         ### Get custom vote button text
         $vote_btn_custom_txt = get_option('wpv-vote-btn-custom-txt');

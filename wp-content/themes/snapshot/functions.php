@@ -665,7 +665,7 @@ add_action('admin_menu', 'remove_admin_menu_items');
 
 function register_custom_menu_page() {
 	global $menu;
-    add_menu_page('instruction_newpost', 'Instructions', 'read', home_url('?page_id=472'), '', menu-dashboard, 7);
+    add_menu_page('instruction_newpost', 'Instructions', 'read', '/help.php', '', menu-dashboard, 7);
 }
 add_action('admin_menu', 'register_custom_menu_page');
 
@@ -678,7 +678,7 @@ function edit_admin_menus() {
 if(!current_user_can('edit_pages')){
     global $menu;  
     
-    $menu[2][0] = 'Back'; // Change 'Dashboard' to 'Back'  
+    $menu[2][0] = 'Home'; // Change 'Dashboard' to 'Home'  
     $menu[2][2] = home_url( "/" ); //Change the link 
     
     
@@ -704,9 +704,10 @@ function remove_media_library_tab($tabs) {
     return $tabs;
 }
 add_filter('media_upload_tabs', 'remove_media_library_tab');
-/***************************************************************************************
-***************************************************************************************/
 
+/*-----------------------------------------------------------------------------------*/
+/* Field Validation in Post Submit*/
+/*-----------------------------------------------------------------------------------*/
 add_action('wp_insert_post', 'sb_post_validation');
 function sb_post_validation() {
 	wp_enqueue_script(
@@ -716,3 +717,51 @@ function sb_post_validation() {
 	);
 }
 
+/*-----------------------------------------------------------------------------------*/
+/* Sorting*/
+/*-----------------------------------------------------------------------------------*/
+function sort_asc( $query ) {
+   	if ( $query->is_home() && $query->is_main_query() ) {
+		if($_REQUEST['sort'] == 1){			// sort by time
+			$query->set('order','ASC');
+		}
+		
+		if($_REQUEST['sort'] == 2){			// sort by voting
+			add_filter('posts_orderby', 'edit_posts_orderby');
+			add_filter('posts_join_paged','edit_posts_join_paged');
+		}
+		
+		if($_REQUEST['sort'] == 3){			// sort by voting
+			add_filter('posts_orderby', 'edit_posts_orderbyasc');
+			add_filter('posts_join_paged','edit_posts_join_paged');
+		}
+		
+		if($_REQUEST['sort'] == 4){			// sort by title
+			$query -> set('orderby', 'title');
+			$query -> set('order', 'ASC');
+		}
+	}
+}
+add_action( 'pre_get_posts', 'sort_asc' );
+
+function edit_posts_join_paged($join_paged_statement) {
+    global $wpdb;
+    $join_paged_statement = "LEFT JOIN ".$wpdb->prefix."wpv_voting ON ".$wpdb->prefix."wpv_voting.post_id = $wpdb->posts.ID";
+    return $join_paged_statement;
+}
+
+function edit_posts_orderby($orderby_statement) {
+    global $wpdb;
+     $orderby_statement = "(".$wpdb->prefix."wpv_voting.vote_count) DESC";
+    return $orderby_statement;
+}
+
+function edit_posts_orderbyasc($orderby_statement) {
+    global $wpdb;
+     $orderby_statement = "(".$wpdb->prefix."wpv_voting.vote_count) ASC";
+    return $orderby_statement;
+}
+
+
+/***************************************************************************************
+***************************************************************************************/

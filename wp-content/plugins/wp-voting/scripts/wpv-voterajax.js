@@ -25,8 +25,8 @@ jQuery(document).ready( function($) {
             function(response){
                 currentobj.css("display", "none");
                 wpv_votebtn.children(".wpv_voted_icon").css("display", "inline-block");
-                wpv_votebtn.children(".wpv_votebtn_txt").css("display", "inline-block");
-                wpv_votebtn.children(".wpv_votebtn_txt").text('Thx!');
+               wpv_votebtn.children(".wpv_votebtn_txt").css("display", "inline-block");
+                wpv_votebtn.children(".wpv_votebtn_txt").text('');
                 wpv_votewidget.children(".wpv_votecount").children(".loadingimage").css("visibility", "hidden");
                 wpv_votewidget.children(".wpv_votecount").children(".loadingimage").remove();
                 wpv_votewidget.children(".wpv_votecount").children(".wpv_vcount").html(response+' ');

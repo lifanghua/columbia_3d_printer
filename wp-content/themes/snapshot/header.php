@@ -9,9 +9,9 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-	<script type="text/javascript" src="/js/jsc3d.js"></script>
-	<script type="text/javascript" src="/js/jsc3d.console.js"></script>
-	<script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/jsc3d.js"></script>
+	<script type="text/javascript" src="js/jsc3d.console.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 
 	<?php wp_head(); ?>
 </head>
@@ -31,6 +31,8 @@
 				</a>
 			</div>
 	
+	
+			
 			<?php
 			wp_nav_menu(array(
 				'theme_location' => 'main-menu',

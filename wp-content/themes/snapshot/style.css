@@ -166,7 +166,7 @@ body {
 }
 
 a {
-	color: #dc5c3b;
+	color: #686868;
 }
 
 /* =Top Area 
@@ -217,6 +217,14 @@ a {
 
 /* =Top Area  : Menu 
 -------------------------------------------------------------- */
+/*
+#main-nav	{ height: 30px; /* set to the height you want your menu to be */ margin: 0 0 10px; /* just to give some spacing  } 
+#main-nav ul	{ margin: 0; padding: 0; /* only needed if you have not done a CSS reset *} 
+#main-nav li	{ display: block; float: left; line-height: 30px; /* this should be the same as your #main-nav height * height: 30px; /* this should be the same as your #main-nav height * margin: 0; padding: 0; /* only needed if you don't have a reset * position: relative; /* this is needed in order to position sub menus * }
+ #main-nav li a	{ display: block; height: 30px; line-height: 30px; padding: 0 15px; }
+*/
+
+
 
 #menu-main-menu-container {
 	display: table-cell;
@@ -227,29 +235,38 @@ a {
 
 #menu-main-menu,
 #top-area .menu > ul {
-	display: inline-block;
-	font-size: 12px;
+	height: 30px; /* set to the height you want your menu to be */ 
+	margin: 0 0 10px; /* just to give some spacing */
 }
 
 #menu-main-menu > li,
 #top-area .menu > ul > li {
-	position: relative;
-	
+	display: block; 
+	float: right; 
+	line-height: 30px; /* this should be the same as your #main-nav height */ 
+	height: 30px; /* this should be the same as your #main-nav height */ 
+	margin: 0; 
+	padding: 0; /* only needed if you don't have a reset */ 
+	position: relative; /* this is needed in order to position sub menus */
+	margin-left: 20px
 	display: inline-block;
-	margin-left: 20px;
 }
 
 #menu-main-menu > li > a,
 #top-area .menu > ul > li > a {
-	color: #3b3b3b;
-	font-weight: 500;
+	display: block; 
+	height: 30px; 
+	line-height: 30px; 
+	padding: 0 15px;
 	text-decoration: none;
 }
+
+
 
 #menu-main-menu .sub-menu,
 #top-area .menu > ul .sub-menu {
 	position: absolute;
-	top: 1em;
+	top: 0px;
 	right: 0;
 	
 	display: none;
@@ -268,7 +285,7 @@ a {
 	background: url(images/submenu-bg.png) repeat;
 	padding: 10px 20px;
 }
-
+/*
 #menu-main-menu .sub-menu .pointer,
 #top-area .menu > ul .sub-menu .pointer {
 	position: absolute;
@@ -280,8 +297,8 @@ a {
 	background: url(images/sprites/submenu-pointer.png) no-repeat;
 	display: block;
 }
-
-#menu-main-menu .sub-menu li,
+*/
+#menu-main-menu .sub-menu li:hover,
 #top-area .menu > ul .sub-menu li {
 	display: block;
 }
@@ -291,6 +308,7 @@ a {
 	color: #c6c6c6;
 	font-weight: 500;
 	text-decoration: none;
+	padding: 10px 20px;
 }
 
 /* =Hidden Search Form 
@@ -545,44 +563,116 @@ a {
 	float: right;
 }
 
+.down-none {
+	float: right;
+}
+
+#down-single.down-single {
+	float: right;
+	width:  50%;
+	position: relative;
+	right: 42px;
+}
+
 .left {
 	float: none; /* not needed, just for clarification */
     /* the next props are meant to keep this block independent from the other floated one */
-    width: 40%;
+    width: 60%;
     overflow: hidden;
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 7px;
+    text-decoration: none;
+}
+
+
+.left.date em {
+	background-image: url(wp-content/themes/snapshot/images/sprites/loop-icon-date.png);
 }
 
 #front-vote.vote {
 	position: absolute;
-	top: -30px;
+	top: -15px;
 	z-index:99;
-	margin: 20px 0;
-	width: auto;
+	margin: 10px;
+	width: 120px;
     float: right;
     display: inline-block;
+	right: -4px;
+}
+
+#single-vote.vote {
+	position: relative;
+	top: -5px;
+	z-index:99;
+	margin: 10px;
+	width: 140px;
+    float: right;
+    display: inline-block;
+    right: -50px;
+}
+
+#single-vote.vote ul.networks {
+width: 100px !important;
+position: relative;
+margin-right: 0px;
+right: -50px;
+height: 120px;
+top: 30px;
+}
+
+#single-vote.vote ul.networks li.facebook.network {
+	float: right;
+	width: 90px;
+	height: 27px;
+	position: relative;
+	top: -10px;
+}
+
+#single-vote.vote ul.networks li.facebook.network iframe{
+	width: 90px;
+	
+}
+#single-vote.vote ul.networks li.network.twitter {
+	float: right;
+	width: 90px;
+	height: 27px;
+	position: relative;
+	top: -10px;
+}
+
+#single-vote.vote ul.networks li {
+	float: right;
+	width: 90px;
+	height: 27px;
+	position: relative;
+	top: -10px;
+}
+#___plusone_0 {
+	width: 80px;
 }
 
 #info.info {
 	position: absolute;
 	z-index:99;
-	right: 5px;
+	right: 0px;
 	width: 100%;
 	font-weight: 300;
-	margin: 20px 0;
+	margin: 5px 0;
 	word-wrap: break-word;
-	color: #dddddd;
+	color: #484848;
 	font-family: 'Belgrano', serif;
 	font-size: 12px;
 	display: inline-block;
-	height: 300px;
+	height: 60px;
     overflow: hidden;
-
+	text-decoration: none;
 
 }
 
+
+
 button.download-itunes {
+	height: 22px;
   background-color: #52a8e8;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52a8e8), color-stop(100%, #377ad0));
   background-image: -webkit-linear-gradient(top, #52a8e8, #377ad0);
@@ -601,7 +691,7 @@ button.download-itunes {
   -moz-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
   box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
   color: #fff;
-  font: normal 11px "lucida grande", sans-serif;
+  font: normal 13px "lucida grande", sans-serif;
   line-height: 1;
   padding: 3px 5px;
   text-align: center;
@@ -730,6 +820,7 @@ button.download-itunes::-moz-focus-inner {
 	background-image: url(images/sprites/loop-icon-date.png);
 }
 
+
 #post-loop .post-content .author_name em {
 /*	background-image: url(images/sprites/loop-icon-comments.png);	*/
 }
@@ -808,7 +899,7 @@ button.download-itunes::-moz-focus-inner {
 -------------------------------------------------------------- */
 
 #page-title .post-info {
-	width: 170px;
+	width: 230px;
 	
 	color: #dddddd;
 	display: table-cell;
@@ -919,6 +1010,7 @@ button.download-itunes::-moz-focus-inner {
 	
 	float: left;
 	margin-right: 25px;
+	margin-left: 150px;
 	min-height: 10px;
 }
 
@@ -936,15 +1028,24 @@ button.download-itunes::-moz-focus-inner {
 -------------------------------------------------------------- */
 
 #post-share {
-	width: 160px;
+	width: 270px;
 	
 	float: left;
-	margin-right: 25px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-left: 8px;
 	min-height: 10px;
 }
 
 #post-share .networks .network {
 	margin-bottom: 3px;
+}
+
+#single-vote .vote >ul .networks {
+width: 90px;
+position: relative;
+margin-right: 0px;
+right: -50px;
 }
 
 /* =Post  : Post Main 

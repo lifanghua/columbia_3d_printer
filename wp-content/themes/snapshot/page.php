@@ -28,7 +28,7 @@
 			
 			
 			Finished Reading???
-			<button type="button" onclick="window.location.href='http://localhost:8888/wordpress-3.4.2/wordpress/wp-admin/post-new.php'">Try Yourself!</button>
+			<button type="button" onclick="window.location.href='<?php echo site_url('/wp-admin/post-new.php'); ?>'">Try Yourself!</button>
 
 			<?php // comments_template() ?>
 			
